@@ -234,7 +234,18 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+
 ##---------------------------------------------------
 # Jetbrain default .gitignore
 ##---------------------------------------------------
+
+# Editor configs
 /.idea/
+
+
+##---------------------------------------------------
+# WPS default .gitignore
+##---------------------------------------------------
+
+# Temporary files
+.~*
