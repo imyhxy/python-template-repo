@@ -11,7 +11,7 @@ repos:
         args: ["--profile=black"]
 
   - repo: https://github.com/psf/black
-    rev: 23.7.0
+    rev: 23.11.0
     hooks:
       - id: black
         args:
@@ -20,6 +20,7 @@ repos:
             - "--target-version=py39"
             - "--target-version=py310"
             - "--target-version=py311"
+            - "--target-version=py312"
         types: [python]
 
   - repo: https://github.com/asottile/blacken-docs
@@ -62,7 +63,7 @@ repos:
         types: [text]
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+    rev: v4.5.0
     hooks:
       - id: check-added-large-files
       - id: check-ast
@@ -96,9 +97,39 @@ repos:
     rev: 6.1.0
     hooks:
       - id: flake8
+        name: Flake is not PEP8 compatible
         additional_dependencies:
           - flake8-2020
           - flake8-bugbear
           - flake8-comprehensions
           - flake8-docstrings
           - flake8-implicit-str-concat
+
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.15.0
+    hooks:
+      - id: pyupgrade
+        name: Upgrade code
+
+  - repo: https://github.com/executablebooks/mdformat
+    rev: 0.7.17
+    hooks:
+      - id: mdformat
+        name: MD formatting
+        additional_dependencies:
+          - mdformat-gfm
+          - mdformat-black
+        # exclude: "README.md|README.zh-CN.md|CONTRIBUTING.md"
+
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.2.6
+    hooks:
+      - id: codespell
+        args:
+          - --ignore-words-list=crate,nd,strack,dota,ser,te,inh
+
+  - repo: https://github.com/Lucas-C/pre-commit-hooks
+    rev: v1.5.4
+    hooks:
+      - id: forbid-crlf
+      - id: remove-crlf

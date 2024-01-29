@@ -233,3 +233,8 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+##---------------------------------------------------
+# Jetbrain default .gitignore
+##---------------------------------------------------
+/.idea/

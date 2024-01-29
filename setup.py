@@ -64,7 +64,7 @@ readme_fname = ""
 for fname in possible_readme_names:
     try:
         long_description = read(fname)
-    except IOError:
+    except OSError:
         # doesn't exist
         continue
     else:
@@ -107,7 +107,7 @@ class UploadCommand(Command):
     @staticmethod
     def status(s):
         """Print things in bold."""
-        print("\033[1m{0}\033[0m".format(s))
+        print("\033[1m{}\033[0m".format(s))
 
     def initialize_options(self):
         pass
@@ -124,13 +124,13 @@ class UploadCommand(Command):
             pass
 
         self.status("Building Source and Wheel (universal) distribution...")
-        os.system("{0} setup.py sdist bdist_wheel --universal".format(sys.executable))
+        os.system("{} setup.py sdist bdist_wheel --universal".format(sys.executable))
 
         self.status("Uploading the package to PyPI via Twine...")
         os.system("twine upload dist/*")
 
         self.status("Pushing git tags...")
-        os.system("git tag v{0}".format(meta["version"]))
+        os.system("git tag v{}".format(meta["version"]))
         os.system("git push --tags")
 
         sys.exit()
@@ -166,6 +166,7 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
     ],
     # Could also include keywords, download_url, project_urls, etc.
     # Custom commands
