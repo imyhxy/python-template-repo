@@ -5,4 +5,8 @@ build-backend = "setuptools.build_meta"
 # pyproject.toml
 [tool.pytest.ini_options]
 minversion = "6.0"
-addopts = "--failed-first"
+addopts = "--failed-first -vq -p no:legacypath --color=yes"
+testpaths = [
+    "tests",
+]
+filterwarnings = "ignore::DeprecationWarning"
